@@ -28,7 +28,7 @@ def initialize_schema(
     schema_path: str = None
 ):
     """
-    Runs schema.sql against the database.
+    Runs schema.sql against the database and applies required schema updates.
     """
     if schema_path is None:
         schema_path = os.path.join(BASE_DIR, "database", "schema.sql")
@@ -39,6 +39,16 @@ def initialize_schema(
         schema_sql = f.read()
 
     conn.executescript(schema_sql)
+
+    cursor = conn.cursor()
+    cursor.execute("PRAGMA table_info(investigations)")
+    columns = [row[1] for row in cursor.fetchall()]
+
+    if "source" not in columns:
+        cursor.execute(
+            "ALTER TABLE investigations ADD COLUMN source TEXT NOT NULL DEFAULT 'superstore'"
+        )
+
     conn.commit()
     conn.close()
 
@@ -83,13 +93,13 @@ def insert_investigation_report(conn: sqlite3.Connection, report) -> int:
     cursor.execute(
         """
         INSERT INTO investigations (
-            store_id, category_id, investigation_date, year, week,
+            store_id, category_id, source, investigation_date, year, week,
             metric, confidence_score, evidence_coverage, coverage_count,
             total_analyzers, status
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
-            store_id, category_id, investigation_date, report.year, report.week,
+            store_id, category_id, "superstore", investigation_date, report.year, report.week,
             "Revenue", report.confidence_score, report.get_evidence_coverage_string(),
             report.coverage_count, report.total_analyzers, "open",
         ),

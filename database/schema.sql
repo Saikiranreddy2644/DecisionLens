@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS investigations (
     investigation_id INTEGER PRIMARY KEY AUTOINCREMENT,
     store_id INTEGER NOT NULL,
     category_id INTEGER NOT NULL,
+    source TEXT NOT NULL DEFAULT 'superstore',
     investigation_date TEXT NOT NULL,
     year INTEGER NOT NULL,
     week INTEGER NOT NULL,
