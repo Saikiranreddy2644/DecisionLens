@@ -1,8 +1,14 @@
 import streamlit as st
 import os
-from database.db_manager import initialize_schema
+import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+from database.db_manager import initialize_schema
+
 DB_PATH = os.path.join(BASE_DIR, "data", "decisionlens.db")
 
 initialize_schema(DB_PATH)
