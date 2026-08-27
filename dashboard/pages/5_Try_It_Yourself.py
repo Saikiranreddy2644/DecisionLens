@@ -95,7 +95,7 @@ def _render_inline_detail(inv_id: int):
 
     st.markdown(
     f"""
-    <div style='background:#f5f5f5;padding:20px;border-radius:10px;border-left:4px solid #7c3aed;color:#1f2937'>
+    <div style='background:rgba(128,128,128,0.12);padding:20px;border-radius:10px;border-left:4px solid #7c3aed;color:#1f2937'>
     <p style='font-size:18px;margin:0'>{recommendation['action']}</p>
     <p style='margin:8px 0 0 0;color:#4b5563'>
         {priority_icon} Priority: <b>{recommendation['priority'].title()}</b>
@@ -106,7 +106,7 @@ def _render_inline_detail(inv_id: int):
     unsafe_allow_html=True
 )
     st.divider()
-
+ 
     st.subheader("🤖 AI Business Summary")
     if summary:
         st.info(summary["summary_text"])
