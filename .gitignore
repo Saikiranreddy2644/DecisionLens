@@ -20,6 +20,8 @@ env/
 *.sqlite
 *.sqlite3
 
+!data/decisionlens.db
+
 # IDE / editor
 .vscode/
 .idea/
