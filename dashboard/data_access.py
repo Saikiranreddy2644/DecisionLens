@@ -7,11 +7,14 @@ Every page calls functions from here — no raw SQL anywhere else.
 import sqlite3
 import pandas as pd
 import os
+from database.db_manager import initialize_schema
 
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "decisionlens.db")
 
 
 def get_connection():
+    initialize_schema(DB_PATH)
+
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
