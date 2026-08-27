@@ -17,7 +17,7 @@ print("="*80)
 print("\n[Test 1] Superstore Dataset")
 print("-"*80)
 try:
-    df = pd.read_csv(r'C:\Users\hp 440 G7\OneDrive\Desktop\DecisionLens\dataset\Sample - Superstore.csv', encoding='latin1')
+    df = pd.read_csv("dataset/Sample - Superstore.csv", encoding="latin1")
     print(f"Loaded: {len(df)} rows")
     print(f"Raw columns: {df.columns.tolist()}\n")
     
@@ -36,7 +36,7 @@ except Exception as e:
 print("\n[Test 2] Online Retail Dataset")
 print("-"*80)
 try:
-    df = pd.read_excel(r'C:\Users\hp 440 G7\OneDrive\Desktop\DecisionLens\dataset\online_retail.xlsx')
+    df = pd.read_excel("dataset/online_retail.xlsx")
     print(f"Loaded: {len(df)} rows")
     print(f"Raw columns: {df.columns.tolist()}\n")
     

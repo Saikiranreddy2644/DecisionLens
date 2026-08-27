@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv(r"C:\Users\hp 440 G7\OneDrive\Desktop\DecisionLens\dataset\Sample - Superstore.csv", encoding="latin1")  # this dataset often needs latin1 encoding, not utf-8
+df = pd.read_csv("dataset/Sample - Superstore.csv", encoding="latin1")
 print(df.columns.tolist())
 print(df.shape)
 print(df.head())

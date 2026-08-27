@@ -39,7 +39,7 @@ def run_batch_investigation(
     errors = []
 
     print("[Phase 1] Preprocessing...")
-    df_raw = pd.read_csv(r"C:\Users\hp 440 G7\OneDrive\Desktop\DecisionLens\dataset\Sample - Superstore.csv", encoding="latin1")
+    df_raw = pd.read_csv(csv_path, encoding="latin1")
     prep_result = run_preprocessing(df_raw)
 
     if prep_result["status"] != "OK":
