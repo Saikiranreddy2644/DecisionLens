@@ -88,22 +88,28 @@ def _render_inline_detail(inv_id: int):
 
     st.divider()
 
-    st.subheader("💡 Recommendation")
-    priority_icon = {"immediate": "🔴", "short-term": "🟡", "monitor": "🟢"}.get(
-        recommendation["priority"], "⚪"
-    )
+    priority_icon = {
+    "immediate": "🔴",
+    "short-term": "🟡",
+    "monitor": "🟢",
+}.get(recommendation["priority"], "⚪")
 
     st.markdown(
     f"""
-    <div style='background:rgba(128,128,128,0.12);padding:20px;border-radius:10px;border-left:4px solid #7c3aed;color:#1f2937'>
-    <p style='font-size:18px;margin:0'>{recommendation['action']}</p>
-    <p style='margin:8px 0 0 0;color:#4b5563'>
-        {priority_icon} Priority: <b>{recommendation['priority'].title()}</b>
-    </p>
-    <p style='margin:8px 0 0 0;color:#4b5563;font-size:13px'>{recommendation['rationale']}</p>
+    <div style='background:rgba(128,128,128,0.12);padding:20px;border-radius:10px;border-left:4px solid #7c3aed'>
+        <p style='font-size:18px;margin:0'>
+            {recommendation['action']}
+        </p>
+        <p style='margin:8px 0 0 0;opacity:0.8'>
+            {priority_icon} Priority: <b>{recommendation['priority'].title()}</b>
+        </p>
+        <p style='margin:8px 0 0 0;font-size:13px;opacity:0.7'>
+            {recommendation['rationale']}
+        </p>
     </div>
     """,
     unsafe_allow_html=True
+
 )
     st.divider()
  
